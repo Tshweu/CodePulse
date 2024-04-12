@@ -5,5 +5,5 @@ Resources
 .vs
 ../../.vs
 .DS_Store
-/Data
+# /Data
 /Resources
