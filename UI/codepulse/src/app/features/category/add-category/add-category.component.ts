@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgForm} from '@angular/forms';
 import { AddCategoryRequest } from '../models/add-category-request.model';
 import { CategoryService } from '../services/category.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-category',
@@ -20,7 +21,7 @@ export class AddCategoryComponent implements OnDestroy {
   model: AddCategoryRequest;
   addCategorySubscription?: Subscription;
 
-  constructor(private _categoryService: CategoryService){
+  constructor(private _categoryService: CategoryService,private router: Router){
     this.model = {
       name: '',
       urlHandle: ''
@@ -30,7 +31,7 @@ export class AddCategoryComponent implements OnDestroy {
   onFormSubmit(): void{
     this.addCategorySubscription = this._categoryService.addCategory(this.model).subscribe({
       next: (response) => {
-        console.log(response);
+        this.router.navigateByUrl('/admin/categories');
       },
       error: (error) => {
         console.log(error);
