@@ -52,12 +52,28 @@ namespace CodePulse.API.Controllers
             foreach (var category in categories)
             {
                 response.Add(
-                   new CategoryDto { 
-                       Id = category.Id, 
-                       Name = category.Name, 
-                       UrlHandle = category.UrlHandle 
+                   new CategoryDto {
+                       Id = category.Id,
+                       Name = category.Name,
+                       UrlHandle = category.UrlHandle
                    });
             }
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> GetCategoryById(Guid id)
+        {
+            var category = await categoryRepository.GetByIdAsync(id);
+
+            if(category == null)
+            {
+                return NotFound();
+            }
+
+            var response = new CategoryDto { Id = category.Id, Name = category.Name, UrlHandle = category.UrlHandle };
 
             return Ok(response);
         }
