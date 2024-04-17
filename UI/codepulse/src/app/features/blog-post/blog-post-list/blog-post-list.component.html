@@ -1,0 +1,36 @@
+<div class="container">
+    <h1 class="mt-3">
+        Blog Posts List
+    </h1>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a class="btn btn-primary" [routerLink]="['/admin/blogposts/add']">Add Blog Post</a>
+    </div>
+
+    <!-- @if(blogPosts$ | async; as blogPost){
+        <ng-container>
+          <table class="table table-bordered mt-3">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Url Handle</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(blogPost of blogPosts;track blogPost.id){
+                <tr>
+                  <td>{{blogPost.id}}</td>
+                  <td>{{blogPost.name}}</td>
+                  <td>{{blogPost.urlHandle}}</td>
+                  <td>
+                    <a class="btn btn-light" [routerLink]="['/admin/categories',blogPost.id]">Edit</a>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </ng-container>
+      } -->
+</div>
