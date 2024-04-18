@@ -7,14 +7,15 @@
         <a class="btn btn-primary" [routerLink]="['/admin/blogposts/add']">Add Blog Post</a>
     </div>
 
-    <!-- @if(blogPosts$ | async; as blogPost){
+    @if(blogPosts$ | async; as blogPosts){
         <ng-container>
           <table class="table table-bordered mt-3">
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Title</th>
                 <th>Url Handle</th>
+                <th>Is Visible</th>
                 <th></th>
               </tr>
             </thead>
@@ -22,15 +23,16 @@
               @for(blogPost of blogPosts;track blogPost.id){
                 <tr>
                   <td>{{blogPost.id}}</td>
-                  <td>{{blogPost.name}}</td>
-                  <td>{{blogPost.urlHandle}}</td>
-                  <td>
-                    <a class="btn btn-light" [routerLink]="['/admin/categories',blogPost.id]">Edit</a>
-                  </td>
+                  <td>{{blogPost.title}}</td>
+                  <td>{{blogPost.shortDescription}}</td>
+                  <td>{{blogPost.isVisible}}</td>
+                  <!-- <td>
+                    <a class="btn btn-light" [routerLink]="['/admin/blogPosts',blogPost.id]">Edit</a>
+                  </td> -->
                 </tr>
               }
             </tbody>
           </table>
         </ng-container>
-      } -->
+      }
 </div>

@@ -29,7 +29,7 @@ namespace CodePulse.API.Controllers
                 UrlHandle = request.UrlHandle,
                 IsVisible = request.IsVisible,
             };
-
+            
             blogPost = await blogPostRepository.CreateAsync(blogPost);
 
             var response = new BlogPostDto{
@@ -44,6 +44,30 @@ namespace CodePulse.API.Controllers
                 FeaturedImageUrl = blogPost.FeaturedImageUrl
             };
 
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllBlogPosts()
+        {
+            var posts = await blogPostRepository.GetAllAsync();
+
+            var response = new List<BlogPostDto>();
+            foreach (var blogPost in posts)
+            {
+                response.Add(new BlogPostDto
+                {
+                    Id = blogPost.Id,
+                    Title = blogPost.Title,
+                    ShortDescription = blogPost.ShortDescription,
+                    Author = blogPost.Author,
+                    Content = blogPost.Content,
+                    PublishedDate = blogPost.PublishedDate,
+                    UrlHandle = blogPost.UrlHandle,
+                    FeaturedImageUrl= blogPost.FeaturedImageUrl
+                });
+            }
+                
             return Ok(response);
         }
     }
